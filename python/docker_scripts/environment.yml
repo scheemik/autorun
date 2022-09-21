@@ -1,0 +1,30 @@
+name: phy407
+channels:
+  - anaconda-fusion
+  - defaults
+  - auto
+dependencies:
+  - python=3.7.6
+  - numpy
+  - scipy
+  - scikit-learn
+  - jupyter
+  - ipython
+  - click
+  - joblib
+  - matplotlib
+  - pandas
+  - six
+  - tqdm
+  - pip
+  - pip:
+    - canvasapi==0.15.0
+    - pycode-similar
+    - python-dotenv
+    - termcolor
+    - pycodestyle
+    - flake8
+    - pyflakes
+    - pep8
+    
+    

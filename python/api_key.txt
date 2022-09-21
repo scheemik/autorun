@@ -1,0 +1,3 @@
+API_KEY=11834~rKFKK9EDvr9gcKtp7gnkbuPWaHlWi2wReFkq8sKx5Sm8tBJF930lh7aHwuX1B4xp
+API_URL=https://q.utoronto.ca
+COURSE_ID=181780

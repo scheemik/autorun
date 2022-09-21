@@ -1,0 +1,418 @@
+% Template :CL Vel,  Frits Wenneker
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt, letter]{article} % 10pt font size (11 and 12 also possible), A4 paper (letterpaper for US letter) and two column layout (remove for one column)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Wenneker Article
+% Structure Specification File
+% Version 1.0 (28/2/17)
+%
+% This file originates from:
+% http://www.LaTeXTemplates.com
+%
+% Authors:
+% Frits Wenneker
+% Vel (vel@LaTeXTemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\usepackage{floatrow}
+
+\usepackage[english]{babel} % English language hyphenation
+
+\usepackage{microtype} % Better typography
+
+\usepackage{amsmath,amsfonts,amsthm} % Math packages for equations
+
+\usepackage[svgnames]{xcolor} % Enabling colors by their 'svgnames'
+
+\usepackage[hang, small, labelfont=bf, up, textfont=it]{caption} % Custom captions under/above tables and figures
+
+\usepackage{booktabs} % Horizontal rules in tables
+
+\usepackage{lastpage} % Used to determine the number of pages in the document (for "Page X of Total")
+
+\usepackage{graphicx} % Required for adding images
+
+\usepackage{enumitem} % Required for customising lists
+\setlist{noitemsep} % Remove spacing between bullet/numbered list elements
+
+\usepackage{sectsty} % Enables custom section titles
+\allsectionsfont{\usefont{OT1}{phv}{b}{n}} % Change the font of all section commands (Helvetica)
+
+%----------------------------------------------------------------------------------------
+%	MARGINS AND SPACING
+%----------------------------------------------------------------------------------------
+
+\usepackage{geometry} % Required for adjusting page dimensions
+
+\geometry{
+	top=1cm, % Top margin
+	bottom=1.5cm, % Bottom margin
+	left=2cm, % Left margin
+	right=2cm, % Right margin
+	includehead, % Include space for a header
+	includefoot, % Include space for a footer
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+\setlength{\columnsep}{7mm} % Column separation width
+
+%----------------------------------------------------------------------------------------
+%	FONTS
+%----------------------------------------------------------------------------------------
+
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+
+\usepackage{XCharter} % Use the XCharter font
+
+%----------------------------------------------------------------------------------------
+%	HEADERS AND FOOTERS
+%----------------------------------------------------------------------------------------
+
+\usepackage{fancyhdr} % Needed to define custom headers/footers
+\pagestyle{fancy} % Enables the custom headers/footers
+
+\renewcommand{\headrulewidth}{0.0pt} % No header rule
+\renewcommand{\footrulewidth}{0.4pt} % Thin footer rule
+
+\renewcommand{\sectionmark}[1]{\markboth{#1}{}} % Removes the section number from the header when \leftmark is used
+
+%\nouppercase\leftmark % Add this to one of the lines below if you want a section title in the header/footer
+
+% Headers
+\lhead{} % Left header
+\chead{\textit{\thetitle}} % Center header - currently printing the article title
+\rhead{} % Right header
+
+% Footers
+\lfoot{} % Left footer
+\cfoot{} % Center footer
+\rfoot{\footnotesize Page \thepage\ of \pageref{LastPage}} % Right footer, "Page 1 of 2"
+
+\fancypagestyle{firstpage}{ % Page style for the first page with the title
+	\fancyhf{}
+	\renewcommand{\footrulewidth}{0pt} % Suppress footer rule
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\authorstyle}[1]{{\large\usefont{OT1}{phv}{b}{n}\color{DarkRed}#1}} % Authors style (Helvetica)
+
+\newcounter{instcounter}
+
+%\newcommand{\institution}{\stepcounter{instcounter}{\footnotesize\usefont{OT1}{phv}{m}{sl}\color{Black}\instcounter}} % Institutions style (Helvetica)
+
+\newcommand{\institution}[1]{\protect\stepcounter{instcounter}\textsuperscript{\arabic{instcounter}}{\footnotesize\usefont{OT1}{phv}{m}{sl}\color{Black}#1}} % Institutions style (Helvetica)
+
+\usepackage{titling} % Allows custom title configuration
+
+\newcommand{\HorRule}{\color{DarkGoldenrod}\rule{\linewidth}{1pt}} % Defines the gold horizontal rule around the title
+
+\pretitle{
+	\vspace{-75pt} % Move the entire title section up
+	\HorRule\vspace{1pt} % Horizontal rule before the title
+	\fontsize{24}{28}\usefont{OT1}{phv}{b}{n}\selectfont % Helvetica
+	\color{DarkRed} % Text colour for the title and author(s)
+}
+
+\posttitle{\par\vskip 1pt} % Whitespace under the title
+
+\preauthor{} % Anything that will appear before \author is printed
+
+\postauthor{ % Anything that will appear after \author is printed
+	\vspace{1pt} % Space before the rule
+	\par\HorRule % Horizontal rule after the title
+	
+}
+
+\predate{\begin{center}}
+\postdate{\end{center}\vspace{5pt}} % Space after the title section
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\usepackage{lettrine} % Package to accentuate the first letter of the text (lettrine)
+\usepackage{fix-cm}	% Fixes the height of the lettrine
+
+\newcommand{\initial}[1]{ % Defines the command and style for the lettrine
+	\lettrine[lines=3,findent=4pt,nindent=0pt]{% Lettrine takes up 3 lines, the text to the right of it is indented 4pt and further indenting of lines 2+ is stopped
+		\color{DarkGoldenrod}% Lettrine colour
+		{#1}% The letter
+	}{}%
+}
+
+\usepackage{xstring} % Required for string manipulation
+
+\newcommand{\lettrineabstract}[1]{
+	\StrLeft{#1}{1}[\firstletter] % Capture the first letter of the abstract for the lettrine
+	\initial{\firstletter}\textbf{\StrGobbleLeft{#1}{1}} % Print the abstract with the first letter as a lettrine and the rest in bold
+}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{
+} % The article title
+
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\thispagestyle{firstpage} % Apply the page style for the first page (no headers and footers)
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\hypertarget{requirements}{%
+\section{Requirements}\label{requirements}}
+
+\begin{itemize}
+\tightlist
+\item
+  Anaconda -- Python package manager to setup the controlling python
+  code and interface with Quercus through the API
+\item
+  Docker - Virtual machine manager to control the running of student
+  code within a protected and stable environment (stops the students
+  destroying your computer or affecting other submissions)
+\item
+  Quercus API key, obtained from with the user settings page on Quercus.
+\end{itemize}
+
+\hypertarget{install}{%
+\section{Install}\label{install}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Install anaconda and docker.
+\item
+  Get a Quercus API key and save it to \texttt{python/q.key} along with
+  the API\_URL and COURSE\_ID (in the main url for the course on
+  Quercus)
+\end{enumerate}
+
+\begin{verbatim}
+  API_KEY=LONG_KEY
+  API_URL=https://q.utoronto.ca
+  COURSE_ID=123456
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Create the conda environment to run the code. From
+  \texttt{python/docker\_scripts/} run
+  \texttt{conda\ env\ create\ -f\ environment.yml\ -\/-name\ phy408} .
+  Conda will take a few minutes to complete the install and may tell you
+  to run \texttt{conda\ init\ SHELL} to initialize your shell. Do that
+  too.
+\item
+  Enable the environment to test it. Either
+  \texttt{conda\ activate\ phy408} or \texttt{activate\ phy408}.
+\item
+  Create a Docker image with the required packages. From
+  \texttt{python/docker\_scripts/} run
+  \texttt{docker\ build\ .\ -t\ autorun} (autorun will be the name).
+  Docker will download the base jupyter/scipy virtual machine, and
+  install a new environment idential to your phy408 environment called
+  \enquote{submission} inside a docker machine. It will then install
+  extra custom packages that you can specify in the \texttt{Dockerfile}
+  (e.g.~a special FFT package, pandas, xarray), disable the interactive
+  plotting inside docker, and enable the new environment by default.
+\item
+  Test the Docker image. From
+  \texttt{python/docker\_scripts/docker\_test} , run
+  \texttt{docker\ run\ -\/-rm\ -v\ \textasciigrave{}pwd\textasciigrave{}:/home/jovyan\ -t\ autorun\ \ ./test\_env.sh}
+\end{enumerate}
+
+\begin{verbatim}
+Should print out
+\end{verbatim}
+
+\begin{verbatim}
+    # conda environments:
+    #
+    base                     /opt/conda
+    submission            *  /opt/conda/envs/submission
+\end{verbatim}
+
+\begin{verbatim}
+(the environment is installed)
+
+Run
+```
+docker run --rm -v `pwd`:/home/jovyan -t autorun  python ./test_plot.py
+```
+
+Shout print out
+```
+/opt/conda/lib/python3.7/site-packages/matplotlib/mpl-data/matplotlibrc
+Hello, World!
+```
+and create a test_plot.pdf with a straight line.
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Test the Quercus interface. From the root (1 directory above
+  \texttt{python}) Run \texttt{python/cli.py} and you should get
+\end{enumerate}
+
+\begin{verbatim}
+python/cli.py
+Usage: cli.py [OPTIONS] COMMAND [ARGS]...
+
+CLI.
+
+Options:
+--help  Show this message and exit.
+
+Commands:
+assignment  Group
+groups      Get the group names
+users       Get the user information and store in the user cache file...
+\end{verbatim}
+
+\hypertarget{running-the-code}{%
+\section{Running the code}\label{running-the-code}}
+
+\hypertarget{user-list}{%
+\subsection{User list}\label{user-list}}
+
+\texttt{python/cli.py\ users} exists mostly as a test, but running it
+will create a few files for you and output
+
+\begin{verbatim}
+           sortable_name
+id
+28703      Boone, Lyndon
+112790    Buchanan, Mark
+\end{verbatim}
+
+and it will make a \texttt{submission/data} directory with a
+\texttt{users.csv} file containing the (canvas) user id and name of
+every student. An empty \texttt{subs.csv} file will also be created to
+store the submission times.
+
+\hypertarget{group-list}{%
+\subsection{Group list}\label{group-list}}
+
+Similarly, \texttt{python/cli.py\ groups} creates a file
+\texttt{submission/data/groups.csv} to store the group IDs that get
+linked to the submissions. These are not important if you don't use
+groups and the code should fall back to using user IDs.
+
+\hypertarget{assignments}{%
+\subsection{Assignments}\label{assignments}}
+
+Most of the code is accessed through the assignment command
+\texttt{python/cli.py\ assignment} should output
+
+\begin{verbatim}
+Usage: cli.py assignment [OPTIONS] COMMAND [ARGS]...
+
+  Group
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  download              Download and assignment, DEPRECATED Options:...
+  download-submission   Download the submissions for this assignment Args:...
+  download-submissions  Download the submissions for this assignment Args:...
+  find                  Finds an assignment and prints the assignment ID.
+  find-submissions      Finds submissions to an assignment and prints information about each.
+\end{verbatim}
+
+and you can access the sub-commands as
+
+\texttt{python/cli.py\ assignment\ SUBCOMMAND\ ...}
+
+\hypertarget{download-single-submission}{%
+\subsubsection{Download single
+submission}\label{download-single-submission}}
+
+\texttt{python/cli.py\ assignment\ download-submission\ ASSIGNMENT\ USER\_ID}
+downloads the assignment for the matching user\_id.
+
+\hypertarget{download-submissions}{%
+\subsubsection{Download submissions}\label{download-submissions}}
+
+\texttt{python/cli.py\ assignment\ download-submissions\ ASSIGNMENT}
+downloads all submissions for the assignment.
+
+\texttt{python/cli.py\ assignment\ download-submissions\ ASSIGNMENT\ -\/-filter\ USER\_ID}
+downloads all submissions for the assignment for users matching the
+USER\_ID filter (name or number).
+
+\hypertarget{find-the-assignment}{%
+\subsubsection{Find the Assignment}\label{find-the-assignment}}
+
+\texttt{python/cli.py\ assignment\ find\ ASSIGNMENT} prints the id of
+the assignment matching the name (mosty a sanity check)
+
+\hypertarget{list-assignments}{%
+\subsubsection{List assignments}\label{list-assignments}}
+
+\texttt{python/cli.py\ assignment\ list} lists all assignment names.
+
+\texttt{python/cli.py\ assignment\ list\ -\/-filter=NAME} lists all
+assignment names matching the substring filter.
+
+\hypertarget{find-submissions-without-downloading}{%
+\subsubsection{Find submissions without
+downloading}\label{find-submissions-without-downloading}}
+
+\texttt{python/cli.py\ assignment\ find-submissions\ ASSIGNMENT\ -\/-filter=USER}
+lists all submissions for this assignment, the submission times, and
+group ids, optionally filtered by the user name or id.
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
